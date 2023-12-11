@@ -65,11 +65,12 @@ def listen(device, event, queue):
             event.set()  # Unblocks the send_command function
 
 
-device_1 = setup_serial('/dev/ttyACM1')
+device_1 = setup_serial('/dev/ttyACM0')
 # the serial port might get changed if we unplug the lora testing device when
-# the RaspberryPi is on and then plug it back again
+# the RaspberryPi is on and then plug it back again, make sure to double check
+# the port with command: ls /dev/tty*
 event_1 = threading.Event()
-device_2 = setup_serial('/dev/ttyACM2')
+device_2 = setup_serial('/dev/ttyACM1')
 event_2 = threading.Event()
 # pre-configure the settings on the two LoRa devices to make sure they use the following parameters:
 # Frequency:                   923000000
